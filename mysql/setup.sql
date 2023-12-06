@@ -7,7 +7,7 @@ USE student_passwords;
 CREATE USER 'passwords_user'@'localhost' IDENTIFIED BY 'Iamthe1';
 GRANT ALL PRIVILEGES ON student_passwords.* TO 'passwords_user'@'localhost';
 
-                                               
+
 
 DROP TABLE IF EXISTS Passwords;
 DROP TABLE IF EXISTS Users;
