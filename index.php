@@ -25,7 +25,7 @@ if ($option != null) {
                 echo '<div id="error">Search query empty. Please try again.</div>' .
                     "\n";
             } else {
-                if (NOTHING_FOUND === (search($_POST['search']))) {
+                if (NOTHING_FOUND === (Search($_POST['search']))) {
                     echo '<div id="error">Nothing found.</div>' . "\n";
                 }
             }
@@ -37,7 +37,7 @@ if ($option != null) {
                 echo '<div id="error">One or both fields were empty, ' .
                     'but both must be filled out. Please try again.</div>' . "\n";
             } else {
-                update($_POST['current-attribute'], $_POST['new-attribute'],
+                Update($_POST['current-attribute'], $_POST['new-attribute'],
                     $_POST['query-attribute'], $_POST['pattern']);
             }
 
@@ -49,7 +49,7 @@ if ($option != null) {
                 echo '<div id="error">At least one field in your insert request ' .
                     'is empty. Please try again.</div>' . "\n";
             } else {
-                insert(
+                Insert(
                     $_POST['site-name'],
                     $_POST['site-url'],
                     $_POST['user-email'],
@@ -71,7 +71,7 @@ if ($option != null) {
             } else {
                 $attribute = $_POST['current-attribute'];
                 $value = $_POST['pattern'];
-                delete($attribute, $value);
+                Delete($attribute, $value);
             }
             break;
 

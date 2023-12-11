@@ -6,7 +6,15 @@ define("SEARCH",         1);
 define("UPDATE",         2);
 define("INSERT",         3);
 define("DELETE",         4);
-function search($search) {
+/**
+ * Searches for entries in the database that match the given search query.
+ *
+ * @param $search The search query to match against entries in the database.
+ *
+ * @access public
+ * @return int Returns 0 if nothing is found, otherwise, returns the results.
+ */
+function Search($search) {
     try {
         include_once "config.php";
 
@@ -77,10 +85,16 @@ function search($search) {
         exit;
     }
 }
-
-
-
-function delete($attribute, $value) {
+/**
+ * Deletes entries from the database based on the provided attribute and value.
+ *
+ * @param $attribute The attribute to match for deletion.
+ * @param $value     The value of the attribute to match for deletion.
+ *
+ * @access public
+ * @return void
+ */
+function Delete($attribute, $value) {
     try {
         include_once "config.php";
 
@@ -125,10 +139,21 @@ function delete($attribute, $value) {
         echo '<div id="error">Error deleting entry. ' . $e->getMessage() . '</div>' . "\n";
     }
 }
-
-
-
-
+/**
+ * Inserts a new entry into the database with the provided values.
+ *
+ * @param $siteName   The name of the website.
+ * @param $URL        The URL of the website.
+ * @param $Email      The email associated with the user.
+ * @param $FirstName  The first name of the user.
+ * @param $LastName   The last name of the user.
+ * @param $Username   The username associated with the user.
+ * @param $Password   The password associated with the user.
+ * @param $comment    Additional comments or information.
+ *
+ * @access public
+ * @return void
+ */
 function Insert($siteName, $URL, $Email, $FirstName, $LastName, $Username, $Password, $comment) {
 
     try {
@@ -183,38 +208,18 @@ function Insert($siteName, $URL, $Email, $FirstName, $LastName, $Username, $Pass
         echo '<div id="error">Error adding new entry. ' . $e->getMessage() . '</div>' . "\n";
     }
 }
-//function update($table, $currentAttribute, $newValue, $patternColumn = null, $patternValue = null) {
-//    try {
-//        include_once "config.php";
-//
-//        $db = new PDO(
-//            "mysql:host=" . DBHOST . "; dbname=" . DBNAME . ";charset=utf8",
-//            DBUSER,
-//            DBPASS
-//        );
-//
-//        $updateQuery = "UPDATE {$table} SET {$currentAttribute} = :newValue";
-//
-//        if ($patternColumn !== null && $patternValue !== null) {
-//            $updateQuery .= " WHERE {$patternColumn} = :patternValue";
-//        }
-//
-//        $statement = $db->prepare($updateQuery);
-//
-//        $statement->bindParam(':newValue', $newValue, PDO::PARAM_STR);
-//
-//        if ($patternColumn !== null && $patternValue !== null) {
-//            $statement->bindParam(':patternValue', $patternValue, PDO::PARAM_STR);
-//        }
-//
-//        $statement->execute();
-//
-//        echo '<div id="success">Entry updated successfully.</div>' . "\n";
-//    } catch (PDOException $e) {
-//        echo '<div id="error">Error updating entry. ' . $e->getMessage() . '</div>' . "\n";
-//    }
-//}
-function update($current_attribute, $new_attribute, $query_attribute, $pattern) {
+/**
+ * Updates a specific attribute in the database based on the provided parameters.
+ *
+ * @param $current_attribute The attribute to update.
+ * @param $new_attribute     The new value for the attribute.
+ * @param $query_attribute   The attribute to use for the WHERE clause.
+ * @param $pattern           The value to match in the WHERE clause.
+ *
+ * @access public
+ * @return void
+ */
+function Update($current_attribute, $new_attribute, $query_attribute, $pattern) {
     try {
         $db = new PDO(
             "mysql:host=" . DBHOST . "; dbname=" . DBNAME . ";charset=utf8",
